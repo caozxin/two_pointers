@@ -75,7 +75,37 @@ class Solution:
 
         print("result_list", result_list)
 
-            
+    def two_sum_with_twopointers(self, numbers: List[int], target: int) -> List[int]:
+        
+        n = len(numbers)
+        if n <= 0:
+            return []
+        
+        nums = []
+        for idx, num in enumerate(numbers) :
+            nums.append((num, idx))
+
+        nums.sort()
+        print("nums", nums)
+        result_list = []
+
+        for left in range(n):
+            print("I am here")
+            for right in range(n -1, -1, -1):
+                print(left, right)
+                if nums[left] == nums[right]:
+                    break
+                # print("nums[left], nums[right]")
+                # print(nums[left], nums[right])
+
+                if nums[left][0]+ nums[right][0] == target:
+                    result_list.append(nums[left][1])
+                    result_list.append(nums[right][1])
+                    # return [nums[left][0],nums[right][0]]
+                    result_list.sort()
+                    print("result_list", result_list)
+                    return result_list
+
 
 numbers01 = [2,7,11,15]
 target01 = 9
@@ -84,4 +114,4 @@ target01 = 9
 new_solution = Solution()
 numbers = [1,3,-1]
 target = 2
-new_solution.two_sum02(numbers01, target01)
+new_solution.two_sum_with_twopointers(numbers01, target01)
