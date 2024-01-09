@@ -8,7 +8,7 @@ class Solution:
     @return: A integer indicate the sum of max subarray
     """
 
-    def max_sub_array(self, nums: List[int]) -> int:
+    def max_sub_array(self, nums: List[int]) -> int: # Kadane's algorithm
         if not nums:
             return 0
 
