@@ -4,34 +4,33 @@ from typing import List
 
 def find_all_anagrams(original: str, check: str) -> List[int]:
     # WRITE YOUR BRILLIANT CODE HERE
+    def pass_check(window: str, check: str) -> bool:
+#         print("window, check")
+#         print(window, check)
+        for i in range(len(window)):
+            if window[i] in check:
+                check = check.replace(window[i],"", 1)
+        if len(check) == 0:
+            return True
+        else:
+            return False
+    
     if not original: 
         return []
     result_list = [] # list out global variable
     n = len(original)
-    m = len(check) 
-    for i in range(n):
+    k = len(check) # this is the fixed window size
+    window = original[:k] # initiate the window
+#     print('window', window)
+
+    for right in range(k, n+1):
+        left = right - k
         curr_check = check
-        print("curr_check", curr_check)
-        if original[i] in curr_check:
-            
-            curr_idx = i
-            curr_char = original[curr_idx]
-            curr_check = curr_check.replace(curr_char,"")
-            print(curr_idx, curr_char, curr_check, len(curr_check))
-            window = original[curr_idx:curr_idx+m]
-            print(window, window)
-            
-            next_idx = i + 1
-            while next_idx - curr_idx < m and len(curr_check) > 0 and curr_idx + m < n + 1: 
-                next_char = original[next_idx]
-                if next_char in curr_check:
-                    curr_check = curr_check.replace(next_char,"")
-#                     print(next_idx, next_char, curr_check, len(curr_check))
-                    
-                next_idx += 1
-                if len(curr_check) == 0:
-                    result_list.append(curr_idx)
-#                     print("result_list", result_list)
-#                     exit()
-                    break
+        window = original[left:right]
+#         print("curr_check", curr_check, window)
+
+        if pass_check(window, check):
+#             print("pass")
+            result_list.append(left)
+
     return result_list
