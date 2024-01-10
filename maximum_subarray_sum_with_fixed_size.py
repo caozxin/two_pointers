@@ -26,7 +26,8 @@ def subarray_sum_fixed(nums: List[int], k: int) -> int:
         window = nums[left:right] # keep using the slicing to make it consistent
         curr_sum = max_sum - window[0] + window[-1]
 #         print("curr_sum", curr_sum, window[0], window[-1])
-        if curr_sum > max_sum:
-            max_sum = curr_sum
+#         if curr_sum > max_sum:
+#             max_sum = curr_sum
+        max_sum = max(curr_sum, max_sum)
             
     return max_sum
