@@ -1,5 +1,42 @@
 #32 · Minimum Window Substring
 # Given two strings source and target. Return the minimum substring of source which contains each char of target.
+class Final_Solution:
+    def min_window(self, source: str, target: str) -> str:
+        target_count = {}
+        for char in target:
+            target_count[char] = target_count.get(char, 0) + 1
+
+        required_chars = len(target_count)
+        formed_chars = 0
+        left, right = 0, 0
+        current_window = {}
+
+        min_length = float('inf')
+        min_window = ""
+
+        while right < len(source):
+            char = source[right]
+            current_window[char] = current_window.get(char, 0) + 1
+
+            if char in target_count and current_window[char] == target_count[char]:
+                formed_chars += 1
+
+            while formed_chars == required_chars:
+                if right - left + 1 < min_length:
+                    min_length = right - left + 1
+                    min_window = source[left:right + 1]
+
+                left_char = source[left]
+                current_window[left_char] -= 1
+
+                if left_char in target_count and current_window[left_char] < target_count[left_char]:
+                    formed_chars -= 1
+
+                left += 1
+
+            right += 1
+
+        return min_window
 
 class Solution:
     """
