@@ -64,3 +64,13 @@ class Solution:
 
         return longest_len
 
+        # for right in range(n):
+        #     if right < n  and s[right] not in unqiue_char_set:
+        #         unqiue_char_set.add(s[right])
+        #         longest_len = max(longest_len, right - left)
+        #     elif right < n and s[right] in unqiue_char_set: # if s[right] is in unqiue_char_set() already, then it is no longer unique. 
+        #         unqiue_char_set.remove(s[left])
+        #         left += 1
+            
+        # return longest_len
+
