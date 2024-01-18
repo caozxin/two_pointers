@@ -5,7 +5,7 @@ class Solution:
     @param k: a integer
     @return: return a integer
     """
-    def character_replacement(self, s: str, k: int) -> int:
+    def character_replacement_testing(self, s: str, k: int) -> int:
         # write your code here
         if not s:
             return 0
@@ -44,6 +44,56 @@ class Solution:
             # exit()
 
         return max_len
+
+    def character_replacement_testing2(self, s: str, k: int) -> int:
+        if not s:
+            return 0
+
+        input_string = s
+        n = len(input_string)
+        left, right = 0, 0
+        max_len = 0
+
+        for right in range(n):
+            if input_string[right] == input_string[left]:
+                continue
+
+            while k > 0 and left < n and right + k < n:
+                right += 1
+                k -= 1
+
+            left += 1
+
+            curr_len = right - left + 1
+            max_len = max(curr_len, max_len)
+
+        return max_len
+
+    def character_replacement(self, s: str, k: int) -> int:
+        if not s:
+            return 0
+
+        input_string = s
+        n = len(input_string)
+        left, right = 0, 0
+        max_len = 0
+        max_repeat_count = 0
+        char_count = {}
+
+        for right in range(n):
+            # char_count{} got update if char_count.get(input_string[right]) already exist. Otherwise it will return as 0 for char_count[input_string[right]]
+            char_count[input_string[right]] = char_count.get(input_string[right], 0) + 1
+            # max_repeat_count got update between the max() of itself and char_count of the right pointer
+            max_repeat_count = max(max_repeat_count, char_count[input_string[right]])
+
+            if (right - left + 1) - max_repeat_count > k: #when the window is violated, we remove char_count[input_string[left]] and move left pointer
+                char_count[input_string[left]] -= 1
+                left += 1
+            curr_len = right - left + 1
+            max_len = max(max_len, curr_len)
+
+        return max_len
+
 
         
 
