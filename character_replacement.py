@@ -14,27 +14,37 @@ class Solution:
         input_string = s
         n = len(input_string)
         #this question is to find window with maximum repeating characters!
-        
-
         left, right = 0, 0
         max_len = 0
         curr_len = 0 
 
         for right in range(n):
-            # curr_len = right - left + 1
+            # if matching:
+            # print("     before", left, right, k) 
 
-            while input_string[right] != input_string[left] and k > 0:
-                print("     not matching", left, right, k)
-                right += 1
-                k -= 1
-                print("     after", left, right, k) 
-            curr_len =  right
+            if input_string[right] == input_string[left]:
+                continue
+            
+
+            if right < n : 
+                while k > 0 and left <= n and right + k < n:# if not matching and could be replaced
+                    print("     not matching", left, right, k)
+                    print(input_string[left], input_string[right])
+
+                    right += 1
+                    k -= 1
+                
+                left += 1
+            # print("     after", left, right, k) 
+            
+            curr_len =  right - left + 1
             max_len = max(curr_len, max_len)
-            print("curr_len, max_len")
-            print(curr_len, max_len)
-            
-            
-            
-        exit()
+            # print("curr_len, max_len")
+            # print(curr_len, max_len)
+            # exit()
+
+        return max_len
+
+        
 
         
