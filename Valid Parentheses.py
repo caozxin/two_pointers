@@ -14,21 +14,23 @@ class Solution:
 
         n = len(s)
 
-        if n == 1:
+        if n % 2 == 1: # it means odd number of items
             return False
 
-        while fast < len(s):
-            print("b4", slow, fast)
-            if slow == fast:
-                print("1", slow, fast)
-                pass
-            else:
-                if matching_dict.get(s[slow]) == s[fast]:
-                    print("2", slow, fast)
-                    pass 
-                else:
-                    print("3", slow, fast)
-                    return False
-            fast +=1
-        
-        return True
+        for slow in range (len(s)):
+
+            if matching_dict.get(s[slow]): # it finds the first half of any qualified parentheses
+                print("matching", s[slow])
+                fast = slow + 1
+
+                while fast < len(s) and fast > slow:
+
+                    if s[fast] !=  matching_dict.get(s[slow]):
+                        # print("find it", s[fast])
+                        print("not pairng")
+                        # return False
+                    fast += 1
+
+        # return True
+
+            
