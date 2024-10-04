@@ -56,4 +56,30 @@ class Solution:
             
         return True
 
+# my updated version: 
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+    
+        #none handling:
+        if not s or len(s) == 0:
+            return False
+
+        # print(len('amanaplanacanalpanama'))
+
+        left, right = 0, len(s)-1
+
+        while left < right and right < len(s):
+            while left < right and not s[left].isalnum():
+                left += 1
+            while right > left and not s[right].isalnum():
+                right -= 1
+            print(left, right, s[left], s[right])
+            # we should skip all non-alphanumeric characters by now. 
+            if s[left].lower() == s[right].lower():
+                right -= 1
+                left += 1
+            else:
+                return False
+                
+        return True
         
