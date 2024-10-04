@@ -1,0 +1,32 @@
+#valid palindrome part II
+#My Version: 
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+    
+        #none handling:
+        if not s or len(s) == 0:
+            return False
+
+        print(len('amanaplanacanalpanama'))
+
+        # pre-processing: 1) convert all letters into lower case; 2) remove all non-letter chars.
+        fixed_input = s.lower()
+        # print(lower_input)
+        non_letter_chars = [',', ' ', '.', ';', '"', ':', '@', '#', '_', "'", "[",  ']', '{', '}' , '-', '?', '!', "\\", '(', ')', '`']
+        for each in non_letter_chars:
+            fixed_input = fixed_input.replace(each, '')
+        print(fixed_input, len(fixed_input))
+        left, right = 0, len(fixed_input)-1
+
+        while left < right and right < len(fixed_input):
+            print(left, right, fixed_input[left], fixed_input[right])
+            if fixed_input[left] == fixed_input[right]:
+                right -= 1
+                left += 1
+            if fixed_input[left] != fixed_input[right]:
+                return False
+        return True
+
+
+
+        
