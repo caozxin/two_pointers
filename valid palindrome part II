@@ -28,5 +28,32 @@ class Solution:
         return True
 
 
+#improved version:
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        # Handle None input
+        if not s:
+            return False
+
+        # Two-pointer technique
+        left, right = 0, len(s) - 1
+        
+        while left < right:
+            # Move the left pointer to the next valid alphanumeric character
+            while left < right and not s[left].isalnum():
+                left += 1
+            # Move the right pointer to the next valid alphanumeric character
+            while left < right and not s[right].isalnum():
+                right -= 1
+                
+            # Compare the characters in a case-insensitive manner
+            if s[left].lower() != s[right].lower():
+                return False
+            
+            # Move both pointers inward
+            left += 1
+            right -= 1
+            
+        return True
 
         
