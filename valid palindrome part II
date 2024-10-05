@@ -96,7 +96,7 @@ class Solution:
                 l += 1
             while l < r and not s[r].isalnum():
                 r -= 1
-            if s[l].lower() != s[r].lower():  # ignore case
+            if s[l].lower() != s[r].lower():  # handel the False case first
                 return False
             l += 1
             r -= 1
