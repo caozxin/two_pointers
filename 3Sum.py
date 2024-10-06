@@ -37,5 +37,43 @@ class Solution:
         # print(res)
         return res
         exit()
+# improved version:
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()  # Sort the list
+        
+        for i in range(len(nums) - 2):
+            # Skip duplicate elements
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            
+            # If the current number is greater than 0, break early since we can't sum to zero
+            if nums[i] > 0:
+                break
+            
+            # Two pointers for the rest of the elements
+            low, high = i + 1, len(nums) - 1
+            while low < high:
+                curr_sum = nums[i] + nums[low] + nums[high]
+                
+                if curr_sum < 0:
+                    low += 1
+                elif curr_sum > 0:
+                    high -= 1
+                else:
+                    res.append([nums[i], nums[low], nums[high]])
+                    
+                    # Skip duplicate elements for low and high
+                    while low < high and nums[low] == nums[low + 1]:
+                        low += 1
+                    while low < high and nums[high] == nums[high - 1]:
+                        high -= 1
+                    
+                    # Move the pointers forward
+                    low += 1
+                    high -= 1
+        
+        return res
 
 
