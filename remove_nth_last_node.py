@@ -7,7 +7,7 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
 
         if not head:
-            return 
+            return None
 
         def read_node(head: ListNode) :
             while head: #--> this is to read the node
