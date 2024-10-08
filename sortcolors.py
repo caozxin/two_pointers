@@ -20,7 +20,9 @@ class Solution:
 
             elif nums[curr] == 2: # move it to right
                 end -= 1
-                # exit()
+                # noteNote: When we decrement the end pointer, 
+                # the current pointer remains unchanged since it has to analyze the swapped element to determine 
+                # if further swapping is required with the start pointer
                 nums[curr], nums[end] = nums[end], 2
                 
             elif nums[curr] == 1:
