@@ -1,32 +1,28 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
         
-        def check(input_s: str)-> bool:
-            print("input_s", input_s)
-            i, j = 0, len(input_s)-1,
-            while i < len(input_s) and j >= 0:
-                print("i, j", i, j)
-                if input_s[i] != input_s[j]:
+        # Helper function to check if a substring is a palindrome
+        def check_palindrome(s: str, left: int, right: int) -> bool:
+            while left < right:
+                if s[left] != s[right]:
                     return False
-                else:
-                    i += 1
-                    j -= 1
+                left += 1
+                right -= 1
             return True
 
+        # Two pointers approach to check the main string
         start, end = 0, len(s) - 1
 
-        while start < len(s) and end >= 0:
-            print("b4", start, end)
+        while start < end:
             if s[start] != s[end]:
-                print("not matching", start, end)
-                
-                if check(s.replace(s[start], '')) or check(s.replace(s[end], '')):
-                    return True
-                else:
-                    return False
-
+                # Try skipping either the left character or the right character
+                # and check if it results in a valid palindrome
+                return check_palindrome(s, start + 1, end) or check_palindrome(s, start, end - 1)
             start += 1
             end -= 1
-            print("af", start, end)
 
-        return True
+        return True  # If no mismatches found, it's already a palindrome
+
+# # Test case
+# sol = Solution()
+# print(sol.validPalindrome("abca"))  # Expected: True
