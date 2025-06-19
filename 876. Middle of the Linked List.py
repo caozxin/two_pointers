@@ -10,7 +10,7 @@ class Solution:
             return head # return format should be consistent.
 
         fast, slow = head, head
-        # Fix: check both fast and fast.next are not None
+        # Fix: check both fast and fast.next are not None. When fast = None, the listNode is  even, otherwise it is odd. 
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
