@@ -2,7 +2,7 @@ class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         # none handling:
         if not numbers:
-            return []
+            return [] # return format needs to be consistent
 
         n = len(numbers)
         left, right = 0, n-1 # final return should be [left+1, right+1]
@@ -15,4 +15,4 @@ class Solution:
             else: 
                 left += 1
 
-        return []
+        return [] # return format needs to be consistent
