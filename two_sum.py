@@ -117,7 +117,7 @@ target = 2
 
 
 #update 10/04/2025:
-
+# my not working version:
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         #none handling:
@@ -139,3 +139,24 @@ class Solution:
         return [left, right]
 
 new_solution.two_sum_with_twopointers(numbers01, target01)
+
+
+#my improved version:
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        #none handling:
+        if not nums:
+            return []
+        #note: because nums is not sorted, we need to loop into each num
+
+        for left in range(len(nums)):
+            right = left + 1
+
+            while right > left and right <= len(nums) - 1:
+                curr_sum = nums[left] + nums[right]
+                if curr_sum == target:
+                    return [left, right]
+                right += 1
+
+        return []
