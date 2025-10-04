@@ -160,3 +160,29 @@ class Solution:
                 right += 1
 
         return []
+
+#best version: --> using hashmap to lookup num(indx) with O(1)
+from typing import List
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        if not nums:
+            return []
+
+        seen = {}  # stores number -> index
+        left = 0   # we keep this to match your style
+
+        while left < len(nums):
+            complement = target - nums[left]
+            print(f"left={left}, num={nums[left]}, complement={complement}")
+
+            if complement in seen: # here we lookup the num[indx] with O(1)
+                print(f"Found pair: ({seen[complement]}, {left})")
+                return [seen[complement], left]
+
+            seen[nums[left]] = left 
+            print(f"seen: ({seen}, {left})")
+            left += 1
+
+        return []
+
