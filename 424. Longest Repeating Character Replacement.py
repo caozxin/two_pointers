@@ -37,3 +37,27 @@ class Solution:
                 print("max", max_count)
             # exit()
         return max_count
+
+### correction version:
+from collections import Counter
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        # we should use sliding window technique here
+        count = Counter()
+        left = 0
+        max_freq = 0
+        res = 0
+        
+        for right in range(len(s)):
+            count[s[right]] += 1
+            max_freq = max(max_freq, count[s[right]])
+            
+            # if we need more than k replacements, shrink window
+            while (right - left + 1) - max_freq > k:
+                count[s[left]] -= 1
+                left += 1
+            
+            res = max(res, right - left + 1)
+        
+        return res
