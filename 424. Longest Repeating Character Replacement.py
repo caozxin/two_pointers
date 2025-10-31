@@ -43,21 +43,25 @@ from collections import Counter
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        # we should use sliding window technique here
+        if not s:
+            return 0
+
         count = Counter()
+        max_count = 0  # max frequency of a single character in current window
         left = 0
-        max_freq = 0
-        res = 0
-        
+        max_len = 0
+
         for right in range(len(s)):
-            count[s[right]] += 1
-            max_freq = max(max_freq, count[s[right]])
-            
-            # if we need more than k replacements, shrink window
-            while (right - left + 1) - max_freq > k:
+            count[s[right]] += 1 # we manually update the count(right)
+            max_count = max(max_count, count[s[right]]) # similar to above, manually update max_count
+
+            # Current window size is (right - left + 1)
+            # If number of letters to change > k, shrink window
+            while (right - left + 1) - max_count > k:
                 count[s[left]] -= 1
                 left += 1
-            
-            res = max(res, right - left + 1)
-        
-        return res
+
+            max_len = max(max_len, right - left + 1)
+
+        return max_len
+
